@@ -5,17 +5,7 @@ import com.dicoding.jetpack.academy.data.CourseEntity
 import com.dicoding.jetpack.academy.data.ModuleEntity
 import com.dicoding.jetpack.academy.data.source.remote.RemoteDataSource
 
-class AcademyRepository private constructor(private val remoteDataSource: RemoteDataSource): AcademyDataSource {
-
-    companion object {
-        @Volatile
-        private var instance: AcademyRepository? = null
-
-        fun getInstance(remoteData: RemoteDataSource): AcademyRepository =
-            instance ?: synchronized(this) {
-                instance ?: AcademyRepository(remoteData).apply { instance = this }
-            }
-    }
+class FakeAcademyRepository (private val remoteDataSource: RemoteDataSource): AcademyDataSource {
 
     override fun getAllCourses(): List<CourseEntity> {
         val courseResponses = remoteDataSource.getAllCourses()

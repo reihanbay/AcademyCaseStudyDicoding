@@ -1,6 +1,7 @@
 package com.dicoding.jetpack.academy.utils
 
 import android.content.Context
+import android.util.Log
 import com.dicoding.jetpack.academy.data.source.remote.response.ContentResponse
 import com.dicoding.jetpack.academy.data.source.remote.response.CourseResponse
 import com.dicoding.jetpack.academy.data.source.remote.response.ModuleResponse
@@ -26,8 +27,9 @@ class JsonHelper(private val context: Context) {
     fun loadCourses() : List<CourseResponse> {
         val list = ArrayList<CourseResponse>()
         try {
-            val responseObject = JSONObject(parsingFileToString("CourseResponse.json").toString())
+            val responseObject = JSONObject(parsingFileToString("CourseResponses.json").toString())
             val listArray = responseObject.getJSONArray("courses")
+            Log.d("TAG", "loadCourses: ${listArray}")
             for (i in 0 until listArray.length()) {
                 val course = listArray.getJSONObject(i)
                 val id = course.getString("id")
@@ -70,14 +72,14 @@ class JsonHelper(private val context: Context) {
     }
 
     fun loadContent(moduleId: String) : ContentResponse {
-        val fileName = String.format("Content_%s", moduleId)
-        var contentResponse : ContentResponse? = null
+        val fileName = String.format("Content_%s.json", moduleId)
+        var contentResponse: ContentResponse? = null
         try {
             val result = parsingFileToString(fileName)
             if (result != null) {
                 val responseObject = JSONObject(result)
                 val content = responseObject.getString("content")
-                contentResponse = ContentResponse(moduleId,content)
+                contentResponse = ContentResponse(moduleId, content)
             }
         } catch (e: JSONException) {
             e.printStackTrace()
