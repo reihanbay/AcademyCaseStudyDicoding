@@ -12,7 +12,7 @@
         <entry key="app/src/main/res/drawable/ic_loading.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_share_blue.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_course_reader.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_detail_course.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_detail_course.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/content_detail_course.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_academy.xml" value="0.1" />

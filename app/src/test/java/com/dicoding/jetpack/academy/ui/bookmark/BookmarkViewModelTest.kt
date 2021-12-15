@@ -15,20 +15,23 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class BookmarkViewModelTest {
 
-    private lateinit var vm  : BookmarkViewModel
+    private lateinit var viewModel: BookmarkViewModel
 
     @Mock
     private lateinit var academyRepository: AcademyRepository
 
     @Before
     fun setUp() {
-        vm = BookmarkViewModel(academyRepository)
+        viewModel = BookmarkViewModel(academyRepository)
     }
+
     @Test
-    fun getBookmarks() {
-        Mockito.`when`<List<CourseEntity>>(academyRepository.getBookmarkedCourses()).thenReturn(DataDummy.generateDummyCourses() as List<CourseEntity>)
-        val courseEntities = vm.getBookmarks()
+    fun getBookmark() {
+        Mockito.`when`<List<CourseEntity>>(academyRepository.getBookmarkedCourses()).thenReturn(DataDummy.generateDummyCourses() as ArrayList<CourseEntity>)
+        val courseEntities = viewModel.getBookmarks()
+        Mockito.verify<AcademyRepository>(academyRepository).getBookmarkedCourses()
         assertNotNull(courseEntities)
-        assertEquals(5, courseEntities.size)
+        assertEquals(5,courseEntities.size)
+
     }
 }

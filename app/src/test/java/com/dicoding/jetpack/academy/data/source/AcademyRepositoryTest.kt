@@ -33,30 +33,21 @@ class AcademyRepositoryTest {
     }
 
     @Test
-    fun getBookmarkedCourses() {
-        `when`<List<CourseResponse>>(remote.getAllCourses()).thenReturn(courseResponse)
-        val courseEntities = academyRepository.getBookmarkedCourses()
-        verify<RemoteDataSource>(remote).getAllCourses()
-        assertNotNull(courseEntities)
-        assertEquals(courseResponse.size.toLong(), courseEntities.size.toLong())
-    }
-
-    @Test
-    fun getCourseWithModules() {
-        `when`<List<CourseResponse>>(remote.getAllCourses()).thenReturn(courseResponse)
-        val resultCourse = academyRepository.getCourseWithModules(courseId)
-        verify<RemoteDataSource>(remote).getAllCourses()
-        assertNotNull(resultCourse)
-        assertEquals(courseResponse[0].title, resultCourse.title)
-    }
-
-    @Test
     fun getAllModulesByCourse() {
         `when`<List<ModuleResponse>>(remote.getModule(courseId)).thenReturn(moduleResponse)
         val moduleEntities = academyRepository.getAllModulesByCourse(courseId)
         verify<RemoteDataSource>(remote).getModule(courseId)
         assertNotNull(moduleEntities)
         assertEquals(moduleResponse.size.toLong(), moduleEntities.size.toLong())
+    }
+
+    @Test
+    fun getBookmarkedCourses() {
+        `when`<List<CourseResponse>>(remote.getAllCourses()).thenReturn(courseResponse)
+        val courseEntities = academyRepository.getBookmarkedCourses()
+        verify<RemoteDataSource>(remote).getAllCourses()
+        assertNotNull(courseEntities)
+        assertEquals(courseResponse.size.toLong(), courseEntities.size.toLong())
     }
 
     @Test
@@ -67,5 +58,14 @@ class AcademyRepositoryTest {
         verify<RemoteDataSource>(remote).getContent(moduleId)
         assertNotNull(resultModule)
         assertEquals(content.content, resultModule.contentEntity?.content)
+    }
+
+    @Test
+    fun getCourseWithModules() {
+        `when`<List<CourseResponse>>(remote.getAllCourses()).thenReturn(courseResponse)
+        val resultCourse = academyRepository.getCourseWithModules(courseId)
+        verify<RemoteDataSource>(remote).getAllCourses()
+        assertNotNull(resultCourse)
+        assertEquals(courseResponse[0].title, resultCourse.title)
     }
 }

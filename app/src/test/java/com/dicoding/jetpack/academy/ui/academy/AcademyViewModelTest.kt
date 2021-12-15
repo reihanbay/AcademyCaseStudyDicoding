@@ -16,10 +16,10 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class AcademyViewModelTest {
 
-    private lateinit var viewModel: AcademyViewModel
+    private lateinit var viewModel : AcademyViewModel
 
     @Mock
-    private lateinit var academyRepository: AcademyRepository
+    private lateinit var academyRepository : AcademyRepository
 
     @Before
     fun setUp() {
@@ -30,7 +30,7 @@ class AcademyViewModelTest {
     fun getCourses() {
         `when`(academyRepository.getAllCourses()).thenReturn(DataDummy.generateDummyCourses() as ArrayList<CourseEntity>)
         val courseEntities = viewModel.getCourses()
-        verify<AcademyRepository>(academyRepository).getAllCourses()
+        verify<AcademyRepository>(academyRepository).getAllCourses() //verify digunakan untuk mengecek apakah metode getAllCourse akan terpanggil jika Anda memanggil viewModel.getCourses().
         assertNotNull(courseEntities)
         assertEquals(5, courseEntities.size)
     }

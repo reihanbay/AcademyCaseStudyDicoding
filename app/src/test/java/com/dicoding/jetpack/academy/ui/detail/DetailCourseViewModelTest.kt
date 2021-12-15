@@ -29,9 +29,6 @@ class DetailCourseViewModelTest {
         vm.setSelectedCourse(courseId)
     }
 
-    @Test
-    fun setSelectedCourse() {
-    }
 
     @Test
     fun getCourse() {
